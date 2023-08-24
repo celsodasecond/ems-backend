@@ -25,6 +25,8 @@ department.
 #### Employee
 
 - **@POST: /api/employees/add** - Add Employee with fields "firstName", "lastName", and "email".
+- **@GET: /api/employees/employee/{employeeId}** - Returns specific employee by employeeId.
+- **@GET: /api/employees/** - Returns the list of all employees.
 
 ### Dependencies
 
