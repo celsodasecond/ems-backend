@@ -24,7 +24,7 @@ department.
 
 #### Employee
 
-- ****
+- **@POST: /api/employees/add** - Add Employee with fields "firstName", "lastName", and "email".
 
 ### Dependencies
 
