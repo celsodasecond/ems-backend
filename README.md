@@ -9,6 +9,10 @@ department.
 ## Project Architecture
 
 #### This project follows the standard Spring Boot Architecture found [here](https://www.javatpoint.com/spring-boot-architecture).
+![image](https://github.com/celsodasecond/ems-backend/assets/75917932/bda679e3-838a-460b-881e-f59ff7592589)
+![image](https://github.com/celsodasecond/ems-backend/assets/75917932/3cbea442-7947-4f6b-9b12-32631018f822)
+
+
 
 ## Want to get the boilerplate ?
 
