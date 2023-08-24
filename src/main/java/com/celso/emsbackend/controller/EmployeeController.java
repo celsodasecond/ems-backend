@@ -1,6 +1,7 @@
 package com.celso.emsbackend.controller;
 
 import com.celso.emsbackend.dto.EmployeeDto;
+import com.celso.emsbackend.entity.Employee;
 import com.celso.emsbackend.service.EmployeeService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -31,5 +32,18 @@ public class EmployeeController {
     public ResponseEntity<List<EmployeeDto>> getEmployees() {
         List<EmployeeDto> employees = employeeService.getEmployees();
         return ResponseEntity.ok(employees);
+    }
+
+    @PutMapping("/employee/{employeeId}")
+    public ResponseEntity<EmployeeDto> updateEmployee(@PathVariable Long employeeId, @RequestBody EmployeeDto employeeDto) {
+        EmployeeDto updatedEmployee = employeeService.updateEmployee(employeeId, employeeDto);
+
+        return ResponseEntity.ok(updatedEmployee);
+    }
+
+    @DeleteMapping("employee/{employeeId}")
+    public ResponseEntity<String> deleteEmployee(@PathVariable Long employeeId) {
+        employeeService.deleteEmployee(employeeId);
+        return ResponseEntity.ok("Employee Deleted Successfully.");
     }
 }

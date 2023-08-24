@@ -10,6 +10,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -27,8 +28,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public EmployeeDto getEmployeeById(Long employeeId) {
-        Employee employee =
-                employeeRepository.findById(employeeId)
+        Employee employee = employeeRepository
+                .findById(employeeId)
                 .orElseThrow(() ->
                         new ResourceNotFoundException("Employee does not exist with the given id : " + employeeId));
 
@@ -41,6 +42,38 @@ public class EmployeeServiceImpl implements EmployeeService {
 
         return employees.stream().map((employee) -> EmployeeMapper.mapToEmployeeDto(employee))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public EmployeeDto updateEmployee(Long employeeId, EmployeeDto updatedEmployeeDto) {
+        Employee employee = employeeRepository
+                .findById(employeeId)
+                .orElseThrow(() -> new ResourceNotFoundException("Employee does not exist with the given id : " + employeeId));
+
+        if (!(updatedEmployeeDto.getFirstName() == null)) {
+            employee.setFirstName(updatedEmployeeDto.getFirstName());
+        }
+
+        if (!(updatedEmployeeDto.getLastName() == null)) {
+            employee.setLastName(updatedEmployeeDto.getLastName());
+        }
+
+        if (!(updatedEmployeeDto.getEmail() == null)) {
+            employee.setEmail(updatedEmployeeDto.getEmail());
+        }
+
+        Employee updatedEmployee = employeeRepository.save(employee);
+
+        return EmployeeMapper.mapToEmployeeDto(updatedEmployee);
+    }
+
+    @Override
+    public void deleteEmployee(Long employeeId) {
+        Employee employee = employeeRepository
+                .findById(employeeId)
+                .orElseThrow(() -> new ResourceNotFoundException("Employee does not exist with the given id : " + employeeId));
+
+        employeeRepository.deleteById(employeeId);
     }
 
 }
