@@ -22,7 +22,7 @@ public class EmployeeController {
         return new ResponseEntity<>(savedEmployee, HttpStatus.CREATED);
     }
 
-    @GetMapping("/employee/{employeeId}")
+    @GetMapping("/{employeeId}")
     public ResponseEntity<EmployeeDto> getEmployeeById(@PathVariable Long employeeId) {
         EmployeeDto employeeDto = employeeService.getEmployeeById(employeeId);
         return ResponseEntity.ok(employeeDto);
@@ -34,14 +34,14 @@ public class EmployeeController {
         return ResponseEntity.ok(employees);
     }
 
-    @PutMapping("/employee/{employeeId}")
+    @PutMapping("/{employeeId}")
     public ResponseEntity<EmployeeDto> updateEmployee(@PathVariable Long employeeId, @RequestBody EmployeeDto employeeDto) {
         EmployeeDto updatedEmployee = employeeService.updateEmployee(employeeId, employeeDto);
 
         return ResponseEntity.ok(updatedEmployee);
     }
 
-    @DeleteMapping("employee/{employeeId}")
+    @DeleteMapping("/{employeeId}")
     public ResponseEntity<String> deleteEmployee(@PathVariable Long employeeId) {
         employeeService.deleteEmployee(employeeId);
         return ResponseEntity.ok("Employee Deleted Successfully.");
