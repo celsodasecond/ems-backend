@@ -25,10 +25,18 @@ department.
 #### Employee
 
 - **@POST: /api/employees/add** - Add Employee with fields "firstName", "lastName", and "email".
-- **@GET: /api/employees/employee/{employeeId}** - Returns specific employee by employeeId.
+- **@GET: /api/employees/{employeeId}** - Returns specific employee by employeeId.
 - **@GET: /api/employees/** - Returns the list of all employees.
-- **@PUT: /api/employees/employee/{employeeId}** - Updated the data of the employee by new values either fully or partially.
-- **@DELETE: /api/employees/employee/{employeeId}** - Deletes an employee record by giving the employeeId.
+- **@PUT: /api/employees/{employeeId}** - Updated the data of the employee by new values either fully or partially.
+- **@DELETE: /api/employees/{employeeId}** - Deletes an employee record by giving the employeeId.
+
+#### Department
+
+- **@POST: /api/departments/add** - Add Department with fields "departmentName" and "departmentDescription".
+- **@GET: /api/departments/{departmentId}** - Returns specific department by departmentId.
+- **@GET: /api/departments/** - Returns the list of all departments.
+- **@PUT: /api/departments/{departmentId}** - Updated the data of the department by new values either fully or partially.
+- **@DELETE: /api/departments/{departmentId}** - Deletes a department record by giving the departmentId.
 
 ### Dependencies
 
