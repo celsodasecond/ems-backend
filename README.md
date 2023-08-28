@@ -9,10 +9,9 @@ department.
 ## Project Architecture
 
 #### This project follows the standard Spring Boot Architecture found [here](https://www.javatpoint.com/spring-boot-architecture).
+
 ![image](https://github.com/celsodasecond/ems-backend/assets/75917932/bda679e3-838a-460b-881e-f59ff7592589)
 ![image](https://github.com/celsodasecond/ems-backend/assets/75917932/3cbea442-7947-4f6b-9b12-32631018f822)
-
-
 
 ## Want to get the boilerplate ?
 
@@ -24,7 +23,8 @@ department.
 
 #### Employee
 
-- **@POST: /api/employees/add** - Add Employee with fields "firstName", "lastName", and "email".
+- **@POST: /api/employees/add** - Add Employee with fields "firstName", "lastName", "email", and a many-to-one
+  relationship with departments parameter "departmentId".
 - **@GET: /api/employees/{employeeId}** - Returns specific employee by employeeId.
 - **@GET: /api/employees/** - Returns the list of all employees.
 - **@PUT: /api/employees/{employeeId}** - Updated the data of the employee by new values either fully or partially.
@@ -35,7 +35,8 @@ department.
 - **@POST: /api/departments/add** - Add Department with fields "departmentName" and "departmentDescription".
 - **@GET: /api/departments/{departmentId}** - Returns specific department by departmentId.
 - **@GET: /api/departments/** - Returns the list of all departments.
-- **@PUT: /api/departments/{departmentId}** - Updated the data of the department by new values either fully or partially.
+- **@PUT: /api/departments/{departmentId}** - Updated the data of the department by new values either fully or
+  partially.
 - **@DELETE: /api/departments/{departmentId}** - Deletes a department record by giving the departmentId.
 
 ### Dependencies

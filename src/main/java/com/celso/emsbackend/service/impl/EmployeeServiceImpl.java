@@ -1,9 +1,11 @@
 package com.celso.emsbackend.service.impl;
 
 import com.celso.emsbackend.dto.EmployeeDto;
+import com.celso.emsbackend.entity.Department;
 import com.celso.emsbackend.entity.Employee;
 import com.celso.emsbackend.exception.ResourceNotFoundException;
 import com.celso.emsbackend.mapper.EmployeeMapper;
+import com.celso.emsbackend.repository.DepartmentRepository;
 import com.celso.emsbackend.repository.EmployeeRepository;
 import com.celso.emsbackend.service.EmployeeService;
 import lombok.AllArgsConstructor;
@@ -18,9 +20,17 @@ import java.util.stream.Collectors;
 public class EmployeeServiceImpl implements EmployeeService {
     private EmployeeRepository employeeRepository;
 
+    private DepartmentRepository departmentRepository;
+
     @Override
     public EmployeeDto createEmployee(EmployeeDto employeeDto) {
         Employee employee = EmployeeMapper.mapToEmployee(employeeDto);
+
+        Department department = departmentRepository
+                .findById(employeeDto.getDepartmentId())
+                .orElseThrow(() -> new ResourceNotFoundException(("Department does not exist with id: " + employeeDto.getDepartmentId())));
+        employee.setDepartment(department);
+
         Employee savedEmployee = employeeRepository.save(employee);
 
         return EmployeeMapper.mapToEmployeeDto(savedEmployee);
@@ -61,6 +71,11 @@ public class EmployeeServiceImpl implements EmployeeService {
         if (!(updatedEmployeeDto.getEmail() == null)) {
             employee.setEmail(updatedEmployeeDto.getEmail());
         }
+
+        Department department = departmentRepository
+                .findById(updatedEmployeeDto.getDepartmentId())
+                .orElseThrow(() -> new ResourceNotFoundException(("Department does not exist with id: " + updatedEmployeeDto.getDepartmentId())));
+        employee.setDepartment(department);
 
         Employee updatedEmployee = employeeRepository.save(employee);
 
